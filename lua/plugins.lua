@@ -36,31 +36,12 @@ function M.setup()
   -- Plugins
   local function plugins(use)
     use { "wbthomason/packer.nvim" }
-
-    -- Colorscheme
-    use {
-      "sainnhe/everforest",
-      config = function()
-        vim.cmd "colorscheme everforest"
-      end,
-    }
-
-    -- Startup screen
-    use {
-      "goolord/alpha-nvim",
-      config = function()
-        require("config.alpha").setup()
-      end,
-    }
-
-    -- Git
-    use {
-      "TimUntersberger/neogit",
-      requires = "nvim-lua/plenary.nvim",
-      config = function()
-        require("config.neogit").setup()
-      end,
-    }
+  use {
+    'svrana/neosolarized.nvim',
+    requires = { 'tjdevries/colorbuddy.nvim' }
+  }
+  use 'nvim-lualine/lualine.nvim' -- Statusline
+  use 'nvim-lua/plenary.nvim' -- Common utilities	
 
     if packer_bootstrap then
       print "Restart Neovim required after installation!"
@@ -74,5 +55,6 @@ function M.setup()
   packer.init(conf)
   packer.startup(plugins)
 end
+
 
 return M
